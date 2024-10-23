@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+    node-app:
+      build: 
+        context: ./backend
+      container_name: node_app_container
+      ports:
+        - "3000:3000"
+      env_file:
+        - ./backend/.env
+      volumes:
+      - .:/app
+      - /app/node_modules
+
+    front:
+      build: 
+        context: ./front
+      container_name: front_container
+      ports:
+        - "4000:3000"  
+
+    mock-api:
+      image: jaypeng2015/show-me-the-money
+      container_name: jaypeng
+      ports:
+        - "8080:3000"
+
+
